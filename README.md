@@ -1,24 +1,18 @@
 # Vercel Clone
 
-A Vercel-inspired design system clone featuring:
-- Dark mode with Geist font
-- Shadow-as-border technique
-- 3-step deployment pipeline
-- Color palette: Pure white `#ffffff`, Vercel black `#171717`, gray scale `#4d4d66` to `#fafafa`
-- Typography: Geist font with `font-feature-settings`
+A Vercel-inspired design system clone, focused on reproducing Vercel's dark-mode visual language.
 
 ## Features
 
-- Pure white `#ffffff`, Vercel black `#171717`, gray scale `#4d4d66` to `#fafafa`
-- Typography: Geist font with `font-feature-settings`
-- Pure black `#000000`, 100% black
-- Dark gray scale from `#4d4d66` to `#fafafa`
+- Dark mode UI: pure black `#000000` background, pure white `#ffffff` text
+- Shadow-as-border technique (soft shadows delimit sections instead of hard borders)
+- Gray scale range `#4d4d66` → `#fafafa` for secondary text/dividers
+- Geist font with `font-feature-settings`
+- 3-step deployment pipeline UI, mimicking Vercel's deploy flow
 
 ## Tech Stack
 
 - **HTML/CSS/JS**: Vanilla, no frameworks
-- **Design**: Linear/Vercel visual language recreation
-- **Pipeline**: 3-step deployment workflow
 
 ## Quick Start
 
