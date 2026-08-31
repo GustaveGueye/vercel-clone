@@ -1,35 +1,35 @@
-# Vercel Design System Clone
+# Vercel Clone
 
-A faithful clone of the Vercel design system — white canvas with Geist font, shadow-as-border technique, and workflow accent colors.
+A Vercel-inspired design system clone featuring:
+- Dark mode with Geist font
+- Shadow-as-border technique
+- 3-step deployment pipeline
+- Color palette: Pure white `#ffffff`, Vercel black `#171717`, gray scale `#4d4d66` to `#fafafa`
+- Typography: Geist font with `font-feature-settings`
 
 ## Features
 
-- **White Canvas**: Pure white `#ffffff` background with `#171717` Vercel black text
-- **Typography**: Geist font family with `font-feature-settings: 'liga'` (ligatures enabled)
-- **Shadow-as-Border**: Signature `rgba(0,0,0,0.08) 0px 0px 0px 1px` replaces traditional CSS borders
-- **Typographic Scale**: 48px display with -2.4px tracking → 12px caption, 3-weight system (400/500/600)
-- **Workflow Colors**: Ship Red `#ff5b4f`, Preview Pink `#de1d8d`, Develop Blue `#0a72ef`
-- **Multi-layer Shadows**: Card elevation with border + ambient + inner highlight rings
-- **Pill Badges**: `#ebf5ff` background, `#0068d6` text, 9999px radius
-- **Focus States**: `2px solid hsla(212, 100%, 48%, 1)` accessibility focus ring
-- **Workflow Pipeline**: 3-step Develop → Preview → Ship with color-coded pills
-- **Responsive**: Mobile < 768px, Tablet 768-1024px, Desktop > 1024px
+- Pure white `#ffffff`, Vercel black `#171717`, gray scale `#4d4d66` to `#fafafa`
+- Typography: Geist font with `font-feature-settings`
+- Pure black `#000000`, 100% black
+- Dark gray scale from `#4d4d66` to `#fafafa`
 
-## Demo
+## Tech Stack
 
-Open `public/index.html` directly in a browser, or run:
+- **HTML/CSS/JS**: Vanilla, no frameworks
+- **Design**: Linear/Vercel visual language recreation
+- **Pipeline**: 3-step deployment workflow
+
+## Quick Start
 
 ```bash
-npm install
-npm run dev
+# Open the project
+open index.html
+
+# Or serve locally
+npx serve public -p 8080
 ```
-
-Then visit `http://localhost:8083`
-
-## Design System Reference
-
-Based on the [Vercel design system](https://vercel.com/design) from the `popular-web-designs` skill.
 
 ## License
 
-MIT
+MIT — Practice project for AI training program
