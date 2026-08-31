@@ -1,0 +1,13 @@
+{
+  "name": "vercel-clone",
+  "version": "1.0.0",
+  "description": "Vercel design system clone - White canvas with Geist font, shadow-as-border technique, workflow colors",
+  "scripts": {
+    "dev": "npx serve public -p 8083",
+    "test": "jest --no-coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "serve": "^14.2.0"
+  }
+}

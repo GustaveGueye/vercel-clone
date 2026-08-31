@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vercel Clone - Developer Platform</title>
+  
+  <!-- Google Fonts: Geist + Geist Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Color Palette - Vercel Design System */
+      --bg: #ffffff;           /* Pure White */
+      --bg-secondary: #fafafa; /* Gray 50 */
+      
+      --text-primary: #171717; /* Vercel Black - primary text */
+      --text-secondary: #4d4d4d; /* Gray 600 - secondary text */
+      --text-tertiary: #666666; /* Gray 500 - tertiary text */
+      --text-quaternary: #808080; /* Gray 400 - placeholder */
+      
+      --ship-red: #ff5b4f;    /* Ship to production */
+      --preview-pink: #de1d8d; /* Preview deployment */
+      --develop-blue: #0a72ef; /* Development workflow */
+      
+      --border-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; /* Signature shadow-border */
+      --light-ring: rgb(235, 235, 235) 0px 0px 0px 1px;     /* Light ring for tabs */
+      
+      --focus-blue: hsla(212, 100%, 48%, 1);              /* Focus ring */
+      
+      --radius-standard: 6px;
+      --radius-pill: 9999px;
+      --radius-image: 12px;
+    }
+    
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-secondary: #fafafa;
+      
+      --text-primary: #171717;
+      --text-secondary: #4d4d4d;
+      --text-tertiary: #666666;
+      --text-quaternary: #808080;
+    }
+    
+    [data-theme="dark"] {
+      --bg: #0f0f0f;
+      --bg-secondary: #171717;
+      
+      --text-primary: #f7f8f8;
+      --text-secondary: #d0d6e0;
+      --text-tertiary: #8a8f98;
+      --text-quaternary: #62666d;
+    }
+    
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-feature-settings: 'liga';
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    /* Monospace */
+    code, pre {
+      font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+      font-feature-settings: 'liga', 'tnum';
+    }
+    
+    /* Typography Scale */
+    .font-display { font-size: clamp(32px, 5vw, 48px); font-weight: 600; line-height: 1.00; letter-spacing: -2.4px; }
+    .font-heading { font-size: clamp(24px, 4vw, 40px); font-weight: 600; line-height: 1.20; letter-spacing: -2.4px; }
+    .font-body { font-size: 18px; font-weight: 400; line-height: 1.50; }
+    .font-caption { font-size: 12px; font-weight: 400; line-height: 1.33; }
+    
+    /* Layout */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    
+    /* --- Header / Navigation --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: var(--border-shadow);
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+      padding: 0 1rem;
+    }
+    
+    .logomark {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--develop-blue);
+    }
+    
+    .nav-link.cta {
+      background: var(--develop-blue);
+      color: white !important;
+      padding: 8px 16px;
+      border-radius: var(--radius-standard);
+      font-weight: 500;
+    }
+    
+    .nav-link.cta-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: var(--border-shadow);
+      padding: 8px 16px;
+      border-radius: var(--radius-standard);
+      font-weight: 500;
+    }
+    
+    /* --- Hero Section --- */
+    .hero {
+      padding: 160px 1rem 80px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    /* --- Buttons --- */
+    .btn-primary {
+      background: var(--develop-blue);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: var(--radius-standard);
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Geist', system-ui, sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      font-feature-settings: 'liga';
+    }
+    
+    .btn-primary:hover {
+      background: #1a5fc1;
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: var(--border-shadow);
+      padding: 16px 32px;
+      border-radius: var(--radius-standard);
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Geist', system-ui, sans-serif;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-feature-settings: 'liga';
+    }
+    
+    .btn-secondary:hover {
+      border-color: #0a56d1;
+      background: #f0f6ff;
+    }
+    
+    .btn-ship {
+      background: var(--ship-red);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-standard);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Geist', system-ui, sans-serif;
+      cursor: pointer;
+      font-feature-settings: 'liga';
+    }
+    
+    .btn-ship:hover {
+      background: #e85d45;
+    }
+    
+    .btn-preview {
+      background: var(--preview-pink);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-standard);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Geist', system-ui, sans-serif;
+      cursor: pointer;
+      font-feature-settings: 'liga';
+    }
+    
+    .btn-preview:hover {
+      background: #c81a7a;
+    }
+    
+    /* --- Cards --- */
+    .card {
+      background: var(--bg-secondary);
+      border: var(--border-shadow);
+      border-radius: var(--radius-standard);
+      padding: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    
+    .card:hover {
+      box-shadow: var(--radius-standard) rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px;
+    }
+    
+    /* Image card with top-rounded border */
+    .image-card {
+      background: var(--bg-secondary);
+      border: var(--light-ring);
+      border-radius: var(--radius-image) var(--radius-image) 0 0;
+      overflow: hidden;
+    }
+    
+    /* --- Feature Section --- */
+    .features {
+      padding: 80px 0;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    /* --- Workflow Pipeline --- */
+    .workflow {
+      padding: 80px 0;
+    }
+    
+    .workflow-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .workflow-step {
+      text-align: center;
+      flex: 1;
+    }
+    
+    .workflow-step-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-quaternary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .workflow-step-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .workflow-step-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    /* --- Badges / Pills --- */
+    .pill-badge {
+      display: inline-block;
+      background: #ebf5ff;
+      color: #0068d6;
+      padding: 0 10px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Geist', sans-serif;
+      font-feature-settings: 'liga';
+      text-transform: uppercase;
+    }
+    
+    /* --- Metric Cards --- */
+    .metric-card {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    
+    .metric-number {
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--develop-blue);
+      margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    /* --- Navigation --- */
+    nav {
+      padding: 2rem 0;
+      border-bottom: var(--light-ring);
+    }
+    
+    .logo-grid {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    
+    .logo-item {
+      opacity: 0.7;
+      filter: grayscale(100%);
+      transition: opacity 0.2s;
+    }
+    
+    .logo-item:hover {
+      opacity: 1;
+    }
+    
+    /* --- Focus States --- */
+    .focus-visible:focus {
+      outline: 2px solid var(--focus-blue);
+      outline-offset: 2px;
+    }
+    
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .container { padding: 0 0.5rem; }
+      .hero { padding: 120px 1rem 60px; }
+      .font-display { font-size: clamp(28px, 6vw, 36px); }
+      .font-heading { font-size: clamp(20px, 5vw, 32px); }
+      .workflow-steps { flex-direction: column; gap: 1rem; }
+      .workflow-step { flex: none; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  
+  <!-- Navigation -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logomark">
+        <span>V</span>ercel
+      </a>
+      <nav>
+        <div class="nav-links">
+          <a href="#features" class="nav-link">Fonctionnalités</a>
+          <a href="#pipeline" class="nav-link">Pipeline</a>
+          <a href="#pricing" class="nav-link">Tarif</a>
+          <a href="#" class="nav-link cta">Commencer</a>
+          <a href="#" class="nav-link cta-secondary">Connexion</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="font-display">Déployments sans friction</h1>
+      <p>Passez de 0 à production en quelques secondes. Aucune configuration requise.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-primary">Commencer gratuit</button>
+        <button class="btn-secondary">Regarder démo</button>
+        <button class="btn-ship">Déployer</button>
+        <button class="btn-preview">Aperçu</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="font-heading text-center mb-8">Pourquoi les équipes choisissent Vercel</h2>
+      
+      <div class="feature-grid">
+        <article class="card">
+          <h3 class="font-body mb-3">Performances Intégrées</h3>
+          <p class="font-caption text-muted mb-4">CDN global, edge computing, et optimisation d'images automatiques.</p>
+          <p class="font-caption">99.99% de disponibilité, temps de chargement < 500ms dans le monde entier.</p>
+        </article>
+        
+        <article class="card">
+          <h3 class="font-body mb-3">Développement Fluide</h3>
+          <p class="font-caption text-muted mb-4">Intégrations Git, prévisualisations à chaque push, et déploiements automatiques.</p>
+          <p class="font-caption">De la commit à la production en moins de 30 secondes.</p>
+        </article>
+        
+        <article class="card">
+          <h3 class="font-body mb-3">Scalabilité Absolue</h3>
+          <p class="font-caption text-muted mb-4">De 1 visite à des millions, votre application scale automatiquement.</p>
+          <p class="font-caption">Pas de serveurs à gérer, pas de configuration infra.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Workflow Pipeline -->
+  <section id="pipeline" class="workflow">
+    <div class="container">
+      <h2 class="font-heading text-center mb-8">Votre pipeline de déploiement</h2>
+      
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="workflow-step-label">Développer</div>
+          <div class="workflow-step-title">Code</div>
+          <div class="workflow-step-desc">Commit your code to Git</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-step-label">Prévisualiser</div>
+          <div class="workflow-step-title">Preview</div>
+          <div class="workflow-step-desc">Instant preview deployments on every push</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-step-label">Déployer</div>
+          <div class="workflow-step-title">Production</div>
+          <div class="workflow-step-desc">One click to production</div>
+        </div>
+      </div>
+      
+      <div class="workflow-pills" style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem;">
+        <span class="pill-badge">Développer</span>
+        <span class="pill-badge">Prévisualiser</span>
+        <span class="pill-badge">Déployer</span>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trust / Logos -->
+  <section style="padding: 80px 0; text-align: center;">
+    <div class="container">
+      <h2 class="font-heading text-center mb-8">Fait confiance par les meilleures équipes</h2>
+      <p class="text-muted mb-6">Rejoignez plus de 1 million de développeurs et d'équipes qui déploient sur Vercel</p>
+      
+      <div class="logo-grid">
+        <img src="https://logos.runel.io/runel-io-logos/perplexity.svg" alt="Perplexity" class="logo-item" width="40">
+        <img src="https://logos.runel.io/runel-io-logos/chatgpt.svg" alt="ChatGPT" class="logo-item" width="40">
+        <img src="https://logos.runel.io/runel-io-logos/cursor.svg" alt="Cursor" class="logo-item" width="40">
+        <img src="https://logos.runel.io/runel-io-logos/supabase.svg" alt="Supabase" class="logo-item" width="40">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Metrics -->
+  <section style="background: var(--bg-secondary); padding: 80px 0;">
+    <div class="container">
+      <div class="metric-card">
+        <div class="metric-number">10x</div>
+        <div class="metric-label">Plus rapide</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">1M+</div>
+        <div class="metric-label">Déploys/mois</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">99.99%</div>
+        <div class="metric-label">Disponibilité</div>
+      </div>
+    </div>
+  </section>
+  
+  <footer style="padding: 40px 0; text-align: center; color: var(--text-quaternary); font-size: 12px;">
+    <p>Inspiré du design system Vercel • Construit avec vanille JS + HTML/CSS</p>
+  </footer>
+  
+  <script>
+    // Simple focus-visible enhancement
+    document.addEventListener('DOMContentLoaded', () => {
+      const focusableElements = document.querySelectorAll('a[href], button, input, [tabindex]');
+      focusableElements.forEach(el => {
+        el.addEventListener('focus', () => {
+          el.classList.add('focus-visible');
+        });
+        el.addEventListener('blur', () => {
+          el.classList.remove('focus-visible');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
